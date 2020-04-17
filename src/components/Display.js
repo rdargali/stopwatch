@@ -1,19 +1,25 @@
 import React from "react";
 
 function Display({ time }) {
+  let ms = time % 1000;
+  let seconds = Math.trunc(time / (1000));
+  let minutes = Math.trunc(time / (1000 * 60));
+  let hours = Math.trunc(time / (1000 * 60 * 60));
+
   const conditionalH = () => {
-    if (time.h === 0) {
-      return "";
+    if (hours === 0) {
+      return null;
     } else {
-      return <span>{time.h >= 0 ? time.h : "0" + time.h} </span>;
+      return <span>{hours >= 10 ? hours : "0" + hours} </span>;
     }
   };
+  
   return (
     <div>
       {conditionalH()} &nbsp;
-      <span>{time.m >= 0 ? time.m : "0" + time.m}</span>&nbsp;&nbsp;
-      <span>{time.s >= 0 ? time.s : "0" + time.s}</span>&nbsp;&nbsp;
-      <span>{time.ms >= 0 ? time.ms : "0" + time.ms}</span>&nbsp;&nbsp;
+      <span>{minutes >= 10 ? minutes : "0" + minutes}</span>&nbsp;&nbsp;
+      <span>{seconds >= 10 ? seconds : "0" + seconds}</span>&nbsp;&nbsp;
+      <span>{ms >= 100 ? ms : ms >= 10 ? "0" + ms : "00" + ms}</span>&nbsp;&nbsp;
     </div>
   );
 }
