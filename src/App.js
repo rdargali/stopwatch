@@ -15,7 +15,23 @@ function App() {
 
   const startTimer = () => {
     run();
+    setStatus(1);
     setInterv(setInterval(run, 10));
+  };
+
+  const resetTimer = () => {
+    clearInterval(interv);
+    setStatus(0);
+    setTime({ ms: 0, s: 0, m: 0, h: 0 });
+  };
+
+  const stopTimer = () => {
+    clearInterval(interv);
+    setStatus(2);
+  };
+
+  const resumeTimer = () => {
+    startTimer();
   };
 
   let updateMs = time.ms;
@@ -46,7 +62,13 @@ function App() {
       <div className="clock-holder">
         <div className="stopwatch">
           <Display time={time} />
-          <Button startTimer={startTimer} status={status} />
+          <Button
+            startTimer={startTimer}
+            stopTimer={stopTimer}
+            resetTimer={resetTimer}
+            resumeTimer={resumeTimer}
+            status={status}
+          />
         </div>
       </div>
     </div>
