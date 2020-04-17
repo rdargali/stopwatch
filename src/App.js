@@ -6,8 +6,8 @@ import "./App.css";
 function App() {
   const [time, setTime] = useState({
     ms: 0,
-    s: 55,
-    m: 59,
+    s: 0,
+    m: 0,
     h: 0,
   });
   const [interv, setInterv] = useState();
